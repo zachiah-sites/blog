@@ -19,6 +19,7 @@
 		display: contents;
 	}
 	ul {
+		margin: 0;
 		display: flex;
 		padding: 1em;
 		gap: 1em;
@@ -30,6 +31,9 @@
 		z-index: 1;
 	}
 
+	li {
+		list-style-type: none;
+	}
 	li:first-of-type {
 		margin-right: auto;
 	}

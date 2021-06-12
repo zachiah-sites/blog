@@ -89,3 +89,10 @@ a {
 a:hover {
 	border-bottom-color: currentColor;
 }
+
+ul {
+	margin: 1em 0;
+}
+li {
+	list-style-type: disc;
+}
