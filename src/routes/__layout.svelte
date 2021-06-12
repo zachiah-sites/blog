@@ -1,6 +1,7 @@
 <script lang="ts">
 	import PageTransition from '../components/PageTransition.svelte';
 	import '../globals.css';
+	import '../prism-theme.css';
 </script>
 
 <nav>

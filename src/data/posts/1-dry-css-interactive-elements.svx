@@ -1,0 +1,48 @@
+---
+title: DRY CSS interactive elements with CSS variables
+tags:
+- CSS
+- CSS variables
+- DRY
+---
+
+
+Here is a great technique to dry out your button styles. Using this method, all you have to do to change the background color is well, change the background color.
+
+```CSS
+button {
+    --shadow-opacity: 0;
+    padding: 1em;
+    background: #3f51b5;
+    color: white;
+    cursor: pointer;
+    transition-duration: 0.2s;
+    box-shadow: 
+        inset 0 0 0 100vw
+        rgba(0,0,0,var(--shadow-opacity));
+}
+
+button:hover {--shadow-opacity: 0.2}
+button:active {--shadow-opacity: 0.4}
+```
+
+Here is what it looks like 
+<br/>
+<button>Hello World</button>
+
+<style>
+    button {
+        --shadow-opacity: 0;
+        padding: 1em;
+        background: #3f51b5;
+        color: white;
+        cursor: pointer;
+        transition-duration: 0.2s;
+        box-shadow: 
+            inset 0 0 0 100vw
+            rgba(0,0,0,var(--shadow-opacity));
+    }
+
+    button:hover {--shadow-opacity: 0.2}
+    button:active {--shadow-opacity: 0.4}
+</style>
