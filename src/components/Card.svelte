@@ -5,6 +5,8 @@
 	import CardHeading from './CardHeading.svelte';
 	import ChevronDownIcon from './ChevronDownIcon.svelte';
 	import ChevronUpIcon from './ChevronUpIcon.svelte';
+	import Loader from './Loader.svelte';
+	import MoreIcon from './MoreIcon.svelte';
 
 	export let title: string;
 	export let link: string | undefined = undefined;
@@ -39,7 +41,9 @@
 		<div class="content" transition:slide|local>
 			<slot />
 			<div class="inner">
-				<a href={link}>{title}</a>
+				<a href={link}>
+					<MoreIcon />
+				</a>
 			</div>
 		</div>
 	{/if}
@@ -59,7 +63,6 @@
 
 	.content {
 		padding: 1em;
-		position: relative;
 	}
 
 	.link .content {
@@ -82,12 +85,18 @@
 	}
 
 	a {
-		display: block;
+		display: flex;
 		position: absolute;
 		top: 0;
 		bottom: 0;
 		left: 0;
 		right: 0;
 		opacity: 0;
+		transition-duration: 1s;
+		background-color: rgba(0, 0, 0, 0.5);
+	}
+
+	a:hover {
+		opacity: 1;
 	}
 </style>

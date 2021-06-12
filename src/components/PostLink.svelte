@@ -6,7 +6,7 @@
 </script>
 
 <PostHOC {postid} let:post>
-	<Card title={post.title} link="/posts/{post.id}" level={3} collapsable>
+	<Card title={post.title} link="/posts/{post.id}" level={3}>
 		<svelte:component this={post.content} />
 	</Card>
 </PostHOC>

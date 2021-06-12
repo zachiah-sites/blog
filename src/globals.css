@@ -75,3 +75,17 @@ h5:first-child,
 h6:first-child {
 	margin: 0 0 0.5em 0;
 }
+
+hr {
+	border-width: 2px;
+	margin: 1em 0;
+}
+
+a {
+	color: var(--primary-bg);
+	border-bottom: 1px solid transparent;
+}
+
+a:hover {
+	border-bottom-color: currentColor;
+}
