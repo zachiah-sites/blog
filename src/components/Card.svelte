@@ -1,6 +1,6 @@
 <script lang="ts">
 	export let title: string;
-	export let link: string | undefined;
+	export let link: string | undefined = undefined;
 </script>
 
 <div class="card" class:link class:normal={!link}>
