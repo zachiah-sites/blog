@@ -17,5 +17,5 @@
 </script>
 
 <Card title={status}>
-	{error}
+	{error.message}
 </Card>

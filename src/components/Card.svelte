@@ -1,37 +1,65 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte';
+	import { slide } from 'svelte/transition';
+
+	import CardHeading from './CardHeading.svelte';
+	import ChevronDownIcon from './ChevronDownIcon.svelte';
+	import ChevronUpIcon from './ChevronUpIcon.svelte';
+
 	export let title: string;
 	export let link: string | undefined = undefined;
+	export let header = false;
+	export let level = 2;
+	export let collapsable = false;
+	export let collapsed = false;
+
+	const dispatch = createEventDispatcher();
 </script>
 
-<div class="card" class:link class:normal={!link}>
-	<h2>{title}</h2>
-	<div class="content">
-		<slot />
-		<div class="inner">
-			<a href={link}>{title}</a>
+<div class="card" class:link class:normal={!link} style="--level: {level}">
+	<CardHeading {level}>
+		<span class="title">{title}</span>
+		{#if collapsable}
+			<button
+				on:click={() => {
+					collapsed = !collapsed;
+					dispatch('click');
+				}}
+			>
+				{#if collapsed}
+					<ChevronDownIcon />
+				{:else}
+					<ChevronUpIcon />
+				{/if}
+			</button>
+		{/if}
+	</CardHeading>
+
+	{#if !header && !collapsed}
+		<div class="content" transition:slide|local>
+			<slot />
+			<div class="inner">
+				<a href={link}>{title}</a>
+			</div>
 		</div>
-	</div>
+	{/if}
 </div>
 
 <style>
+	.title {
+		margin-right: auto;
+	}
 	.card {
 		background: var(--main-bg);
 		color: var(--main-color);
-		margin: 1em 0;
+		margin: 1em 0 1em calc(1em * calc(var(--level) - 1));
 		box-shadow: 0 0 15px 7px black;
 		position: relative;
 	}
 
-	h2 {
-		border-bottom-width: 0px;
-		background-color: var(--primary-bg);
-		color: var(--primary-color);
-		padding: 1em;
-		margin: 0;
-	}
-
 	.content {
 		padding: 1em;
+		position: relative;
 	}
 
 	.link .content {

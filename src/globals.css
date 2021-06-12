@@ -31,25 +31,28 @@
 
 	--primary-bg: #3f51b5;
 	--primary-color: white;
+
+	--heading-root-font-size: 2em;
+	--heading-decrement: 0.15em;
 }
 
 h1 {
-	font-size: 2.5em;
+	--heading-level: 1;
 }
 h2 {
-	font-size: 2.25em;
+	--heading-level: 2;
 }
 h3 {
-	font-size: 2em;
+	--heading-level: 3;
 }
 h4 {
-	font-size: 1.75em;
+	--heading-level: 4;
 }
 h5 {
-	font-size: 1.5em;
+	--heading-level: 5;
 }
 h6 {
-	font-size: 1.25em;
+	--heading-level: 6;
 }
 
 h1,
@@ -58,8 +61,10 @@ h3,
 h4,
 h5,
 h6 {
-	border-bottom-width: 1px;
+	border-bottom-width: calc(calc(7 - var(--heading-level)) * 1px);
 	margin: 1em 0 0.5em 0;
+	--font-subtraction: calc(calc(var(--heading-level) - 1) * var(--heading-decrement));
+	font-size: calc(var(--heading-root-font-size) - var(--font-subtraction));
 }
 
 h1:first-child,
