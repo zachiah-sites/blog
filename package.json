@@ -28,5 +28,8 @@
     "@sveltejs/adapter-vercel": "next",
     "@sveltejs/adapter-static": "next"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@sveltejs/adapter-netlify": "^1.0.0-next.17"
+  }
 }
