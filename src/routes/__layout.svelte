@@ -1,7 +1,23 @@
+<script context="module" lang="ts">
+	export async function load({ page }) {
+		return {
+			props: {
+				path: page.path
+			}
+		};
+	}
+</script>
+
 <script lang="ts">
 	import '../globals.css';
 	import '../prism-theme.css';
+
+	export let path: string;
 </script>
+
+<svelte:head>
+	<link rel="canonical" href="https://blog.zachiah.com{path}" />
+</svelte:head>
 
 <nav>
 	<ul>
