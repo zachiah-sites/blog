@@ -8,6 +8,7 @@ export default async function loadApiPostWithIdTags(id: string): Promise<ApiPost
 	return {
 		id,
 		title: postModule.metadata.title,
-		tagIds: postModule.metadata.tags
+		tagIds: postModule.metadata.tags,
+		description: postModule.metadata.description
 	};
 }

@@ -88,11 +88,6 @@
 		padding: 1em;
 	}
 
-	.link .content {
-		max-height: 20em;
-		overflow: hidden;
-	}
-
 	.inner {
 		display: none;
 	}
@@ -104,7 +99,6 @@
 		bottom: 0;
 		left: 0;
 		right: 0;
-		background: linear-gradient(180deg, transparent 60%, black);
 	}
 
 	a {

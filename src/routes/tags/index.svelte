@@ -14,9 +14,13 @@
 	import Tag from '$components/Tag.svelte';
 	import TagIcon from '$components/TagIcon.svelte';
 	import type { Tag as TagType } from '../../datatypes/Tag';
+	import Head from '$components/Head.svelte';
 
 	export let tags: TagType[];
 </script>
+
+<!--TODO: Add better description once I have more articles-->
+<Head title="Tags" description="Find content by tag" />
 
 <Card header title="Tags" icon={TagIcon} level={1} />
 

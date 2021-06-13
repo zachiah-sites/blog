@@ -29,9 +29,12 @@
 </script>
 
 <script lang="ts">
+	import Head from '$components/Head.svelte';
+
 	import Post from '../../components/Post.svelte';
 	import type { Post as PostType } from '../../datatypes/Post';
 	export let post: PostType;
 </script>
 
+<Head title={post.title} description={post.description} />
 <Post {post} />

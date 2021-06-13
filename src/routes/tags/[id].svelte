@@ -28,11 +28,13 @@
 
 	import type { Post } from '../../datatypes/Post';
 	import type { Tag } from '../../datatypes/Tag';
+	import Head from '$components/Head.svelte';
 
 	export let posts: Post[];
 	export let tag: Tag;
 </script>
 
+<Head title="{tag.id} | tags" description="View Posts with tag &ldquo;{tag.id}&rdquo;" />
 <Card header title={tag.id} icon={TagIcon} level={1} />
 {#each posts as post}
 	<PostLink {post} />

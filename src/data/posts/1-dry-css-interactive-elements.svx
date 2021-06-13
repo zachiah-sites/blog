@@ -4,6 +4,7 @@ tags:
 - css
 - css-variables
 - dry
+description: "Use CSS variables to remove duplication from your different state styles such as :hover and :active."
 ---
 
 

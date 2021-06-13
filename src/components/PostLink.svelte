@@ -15,5 +15,5 @@
 		{/each}
 	</svelte:fragment>
 
-	<svelte:component this={post.content} />
+	{post.description}
 </Card>

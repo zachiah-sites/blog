@@ -5,5 +5,6 @@ export type Post = {
 	id: string;
 	content: SvelteComponent;
 	title: string;
+	description: string;
 	tags: Tag[];
 };

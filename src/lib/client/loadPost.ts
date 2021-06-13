@@ -9,10 +9,9 @@ export default async function loadPost(fetch, id: string): Promise<Post> {
 		const apiPost: ApiPost = await response.json();
 		const postModule = await loadPostIdModule(() => loadPostIds(fetch), id);
 		return {
+			...apiPost,
 			id,
-			content: postModule.default,
-			title: apiPost.title,
-			tags: apiPost.tags
+			content: postModule.default
 		};
 	} else {
 		throw new Error('No Such Post');
