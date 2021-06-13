@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-	import { loadPost } from '$lib/postsLoader';
+	import loadPost from '$lib/client/loadPost';
 
 	/**
 	 * @type {import('@sveltejs/kit').Load}
@@ -30,7 +30,7 @@
 
 <script lang="ts">
 	import Post from '../../components/Post.svelte';
-	import type { Post as PostType } from '$lib/Post';
+	import type { Post as PostType } from '../../datatypes/Post';
 	export let post: PostType;
 </script>
 

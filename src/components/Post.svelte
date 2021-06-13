@@ -1,6 +1,7 @@
 <script lang="ts">
-	import type {Post} from '$lib/Post';
+	import type { Post } from '../datatypes/Post';
 	import Card from './Card.svelte';
+	import Tag from './Tag.svelte';
 	import TagIcon from './TagIcon.svelte';
 
 	export let post: Post;
@@ -10,7 +11,7 @@
 	<svelte:fragment slot="banner">
 		<TagIcon --margin="0 0 0 auto" />
 		{#each post.tags as tag, index}
-			<span><a href="/tags/{tag}">{tag}</a></span>
+			<Tag {tag} />
 		{/each}
 	</svelte:fragment>
 
@@ -27,8 +28,5 @@
 
 	a {
 		margin-left: auto;
-		background: var(--primary-bg);
-		color: var(--primary-color);
-		padding: 0.5em;
 	}
 </style>

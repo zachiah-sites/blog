@@ -15,7 +15,7 @@
 	export let level = 2;
 	export let collapsable = false;
 	export let collapsed = false;
-	export let icon: SvelteComponent = null;
+	export let icon = null;
 
 	const dispatch = createEventDispatcher();
 </script>

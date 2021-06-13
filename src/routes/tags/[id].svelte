@@ -1,11 +1,23 @@
 <script context="module" lang="ts">
-	import { getTagPosts } from '$lib/postsLoader';
+	import loadTag from '$lib/client/loadTag';
+	import loadPost from '$lib/client/loadPost';
 
 	/**
 	 * @type {import('@sveltejs/kit').Load}
 	 */
 	export async function load({ page, fetch, session, context }) {
-		return { props: { posts: await getTagPosts(fetch, page.params.id), tag: page.params.id } };
+		try {
+			const tag: Tag = await loadTag(fetch, page.params.id);
+			const posts = await Promise.all(tag.postIds.map((postId) => loadPost(fetch, postId)));
+			return {
+				props: {
+					tag,
+					posts
+				}
+			};
+		} catch {
+			return { status: 404, message: '404 No Such Tag' };
+		}
 	}
 </script>
 
@@ -14,16 +26,14 @@
 	import PostLink from '$components/PostLink.svelte';
 	import TagIcon from '$components/TagIcon.svelte';
 
-	import type { SvelteComponent } from 'svelte/internal';
+	import type { Post } from '../../datatypes/Post';
+	import type { Tag } from '../../datatypes/Tag';
 
-	$: _TagIcon = (TagIcon as any) as SvelteComponent;
-
-	import type { Post } from '$lib/Post';
 	export let posts: Post[];
-	export let tag: string;
+	export let tag: Tag;
 </script>
 
-<Card header title={tag} icon={_TagIcon} level={1} />
+<Card header title={tag.id} icon={TagIcon} level={1} />
 {#each posts as post}
 	<PostLink {post} />
 {/each}
