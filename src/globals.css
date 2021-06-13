@@ -96,3 +96,7 @@ ul {
 li {
 	list-style-type: disc;
 }
+
+p {
+	max-width: 70ch;
+}
