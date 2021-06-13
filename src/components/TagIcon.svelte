@@ -12,7 +12,7 @@
 		margin: var(--margin);
 		display: flex;
 		height: 100%;
-		width: 1em;
+		width: 2em;
 	}
 	svg {
 		fill: currentColor;
