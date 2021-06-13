@@ -1,14 +1,25 @@
 <script context="module" lang="ts">
+	import { loadPost } from '$lib/postsLoader';
+
 	/**
 	 * @type {import('@sveltejs/kit').Load}
 	 */
 	export async function load({ page, fetch, session, context }) {
-		const postids: string[] = await (await fetch('/posts/posts.json')).json();
-		const postid: string = page.params.id;
+		// const postids: string[] = await (await fetch('/posts/posts.json')).json();
+		// const postid: string = page.params.id;
 
-		if (postids.includes(postid)) {
-			return { props: { postid } };
-		} else {
+		// if (postids.includes(postid)) {
+		// 	return { props: { postid } };
+		// } else {
+		// 	return {
+		// 		status: 404,
+		// 		error: "That Post Doesn't Exist Sorry"
+		// 	};
+		// }
+
+		try {
+			return { props: { post: await loadPost(fetch, page.params.id) } };
+		} catch {
 			return {
 				status: 404,
 				error: "That Post Doesn't Exist Sorry"
@@ -19,7 +30,8 @@
 
 <script lang="ts">
 	import Post from '../../components/Post.svelte';
-	export let postid: string[];
+	import type { Post as PostType } from '$lib/Post';
+	export let post: PostType;
 </script>
 
-<Post {postid} />
+<Post {post} />

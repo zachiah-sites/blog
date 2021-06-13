@@ -1,9 +1,9 @@
 ---
 title: DRY CSS interactive elements with CSS variables
 tags:
-- CSS
-- CSS variables
-- DRY
+- css
+- css-variables
+- dry
 ---
 
 

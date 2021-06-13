@@ -1,22 +1,15 @@
 <script context="module" lang="ts">
-	import { loadPosts } from '../../lib/postsLoader';
+	import { getTagPosts } from '$lib/postsLoader';
+
 	/**
 	 * @type {import('@sveltejs/kit').Load}
 	 */
 	export async function load({ page, fetch, session, context }) {
-		const posts = await loadPosts(fetch);
-
-		return { props: { posts } };
+		return { props: { posts: getTagPosts(fetch, page.params.id) } };
 	}
 </script>
 
 <script lang="ts">
-	import PostLink from '../../components/PostLink.svelte';
 	import type { Post } from '$lib/Post';
-
 	export let posts: Post[];
 </script>
-
-{#each posts as post}
-	<PostLink {post} />
-{/each}

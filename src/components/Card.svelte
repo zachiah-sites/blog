@@ -37,6 +37,12 @@
 		{/if}
 	</CardHeading>
 
+	{#if $$slots['banner']}
+		<div class="banner">
+			<slot name="banner" />
+		</div>
+	{/if}
+
 	{#if !header && !collapsed}
 		<div class="content" transition:slide|local>
 			<slot />
@@ -50,6 +56,13 @@
 </div>
 
 <style>
+	.banner {
+		padding: 1em;
+		background: var(--secondary-bg);
+		color: var(--secondary-color);
+		display: flex;
+		gap: 0.5em;
+	}
 	.title {
 		margin-right: auto;
 	}
