@@ -8,6 +8,8 @@
 
 <style>
 	a {
+		white-space: nowrap;
+		display: block;
 		background: var(--primary-bg);
 		color: var(--primary-color);
 		padding: 0.5em;

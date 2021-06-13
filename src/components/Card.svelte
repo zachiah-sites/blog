@@ -67,6 +67,7 @@
 		color: var(--secondary-color);
 		display: flex;
 		gap: 0.5em;
+		flex-wrap: wrap;
 	}
 	.title {
 		margin-right: auto;
