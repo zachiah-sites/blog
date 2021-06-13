@@ -7,7 +7,7 @@
 	title="Home"
 	description="A Blog by me (Zachiah Sawyer), about anything I'm interested in. Expect articles about web development and piano."
 />
-<Card level={2} title="Zachiah">
+<Card level={1} title="Zachiah">
 	Hi, my name is Zachiah, Sawyer. This is my personal blog. Topics you should expect to find include
 	<ul>
 		<li>HTML</li>
