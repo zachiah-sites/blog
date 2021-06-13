@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
+	import type { SvelteComponent } from 'svelte/internal';
 	import { slide } from 'svelte/transition';
 
 	import CardHeading from './CardHeading.svelte';
@@ -14,12 +15,16 @@
 	export let level = 2;
 	export let collapsable = false;
 	export let collapsed = false;
+	export let icon: SvelteComponent = null;
 
 	const dispatch = createEventDispatcher();
 </script>
 
 <div class="card" class:link class:normal={!link} style="--level: {level}">
 	<CardHeading {level}>
+		{#if icon}
+			<svelte:component this={icon} />
+		{/if}
 		<span class="title">{title}</span>
 		{#if collapsable}
 			<button
@@ -65,6 +70,11 @@
 	}
 	.title {
 		margin-right: auto;
+		margin-left: 0.5em;
+	}
+
+	.title:first-child {
+		margin-left: 0;
 	}
 	.card {
 		background: var(--main-bg);

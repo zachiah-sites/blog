@@ -4,6 +4,6 @@
 	export let post;
 </script>
 
-<Card title={post.title} link="/posts/{post.id}" level={3}>
+<Card title={post.title} link="/posts/{post.id}" level={2}>
 	<svelte:component this={post.content} />
 </Card>
