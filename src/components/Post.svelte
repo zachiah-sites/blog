@@ -18,11 +18,14 @@
 	<svelte:component this={post.content} />
 
 	<hr />
-	<p><span>Thanks for Reading!</span> <a href="/posts">All Posts</a></p>
+	<footer>
+		<p>Thanks for Reading!</p>
+		<a href="/posts">All Posts</a>
+	</footer>
 </Card>
 
 <style>
-	p {
+	footer {
 		display: flex;
 	}
 
