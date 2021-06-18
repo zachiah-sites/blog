@@ -1,0 +1,65 @@
+---
+title: Using mdsvex for dynamic content in your sveltekit app!
+tags:
+- sveltekit
+- mdsvex
+description: "How to integrate mdsvex and sveltekit and how to set up your api for dynamic content"
+---
+
+In this tutorial I am going to demonstrate how to use mdsvex with a dynamic sveltekit route.
+
+## The problem
+We can't really serialize a svelte components to json and mdsvex compiles to svelte components, so you might expect that we can't setup an api that sends mdsvex. This is basically true, but there is a great solution to sending svelte/mdsvex and that is `import()`.
+
+## Tutorial
+1. Install mdsvex in your sveltekit app
+```bash
+npx svelte-add mdsvex
+```
+2. Create a directory for your dynamic content
+```bash
+mkdir src/data && mkdir src/data/posts
+```
+
+3. Make an api route that gives you the names of all posts. You will just read the directory's files. You can also send some frontmatter from the mdsvex if you want. For an example you can look at the [source code of this site](https://github.com/zachiah-sites/blog/tree/master/src/routes/posts).
+
+4. Use import() to on the filenames that you fetch from the api route. Here is some code from this site
+
+```typescript
+export default async function loadPostIdModule(loadPostIds: () => Promise<string[]>, id: string) {
+	const postIds = await loadPostIds();
+	if (postIds.includes(id)) {
+		return await import(`../../data/posts/${id}.svx`);
+	} else {
+		throw new Error('404 Post not found');
+	}
+}
+
+// This function from the server portion might explain why I did things with the loadPostIdModule excepting a loadPostIds function
+// export default async function loadPostIds() {
+// 	const postids = (await readdir(`src/data/posts`)).map((i) => i.replace(/.svx$/, ''));
+// 	return postids;
+// }
+
+export default async function loadPostIds(fetch) {
+	return (await (await fetch('/posts.json')).json()).map((i) => i.id);
+}
+
+
+export default async function loadPost(fetch, id: string): Promise<Post> {
+	const response = await fetch(`/posts/${id}.json`);
+	if (response.ok) {
+		const apiPost: ApiPost = await response.json();
+		const postModule = await loadPostIdModule(() => loadPostIds(fetch), id);
+		return {
+			...apiPost,
+			id,
+			content: postModule.default
+		};
+	} else {
+		throw new Error('No Such Post');
+	}
+}
+
+```
+5. Create your content. Once you integrate this you will be able to write site's content in mdsvex which I assure you is an excellent dev-experience (I'm doing it right now). For a working exmple you can view [this site's repo](https://github.com/zachiah-sites/blog)

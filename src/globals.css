@@ -93,10 +93,21 @@ a:hover {
 ul {
 	margin: 1em 0;
 }
-li {
+ul li {
 	list-style-type: disc;
+}
+ol li {
+	list-style-type: decimal;
 }
 
 p {
 	max-width: 70ch;
+}
+
+iframe {
+	width: 100%;
+}
+
+pre {
+	max-height: 20em;
 }

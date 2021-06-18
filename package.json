@@ -30,6 +30,9 @@
   },
   "type": "module",
   "dependencies": {
-    "@sveltejs/adapter-netlify": "^1.0.0-next.17"
+    "@sveltejs/adapter-netlify": "^1.0.0-next.17",
+    "abcjs": "^5.12.0",
+    "opensheetmusicdisplay": "^1.0.0",
+    "remark-music": "^0.1.1"
   }
 }

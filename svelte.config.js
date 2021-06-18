@@ -7,7 +7,7 @@ import staticAdapter from '@sveltejs/adapter-static';
 const config = {
 	// Consult https://github.com/sveltejs/svelte-preprocess
 	// for more information about preprocessors
-	preprocess: [mdsvex(), preprocess()],
+	preprocess: [mdsvex({}), preprocess()],
 	extensions: ['.svelte', '.svx'],
 
 	kit: {

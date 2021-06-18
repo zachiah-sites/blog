@@ -11,6 +11,7 @@
 <script lang="ts">
 	import '../globals.css';
 	import '../prism-theme.css';
+	import '../abcjs-audio.css';
 
 	export let path: string;
 </script>
