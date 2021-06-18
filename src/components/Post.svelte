@@ -20,7 +20,7 @@
 	<hr />
 	<footer>
 		<p>Thanks for Reading!</p>
-		<a href="/posts">All Posts</a>
+		<a href="/posts/">All Posts</a>
 	</footer>
 </Card>
 

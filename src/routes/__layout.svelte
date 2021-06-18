@@ -17,13 +17,13 @@
 </script>
 
 <svelte:head>
-	<link rel="canonical" href="https://blog.zachiah.com{path}" />
+	<link rel="canonical" href="https://blog.zachiah.com{path.replace(/\/$/, '')}/" />
 </svelte:head>
 
 <nav>
 	<ul>
 		<li><a href="/">Home</a></li>
-		<li><a href="/posts">Posts</a></li>
+		<li><a href="/posts/">Posts</a></li>
 	</ul>
 </nav>
 

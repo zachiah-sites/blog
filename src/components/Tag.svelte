@@ -4,7 +4,7 @@
 	export let tag: Tag;
 </script>
 
-<span><a href="/tags/{tag.id}">{tag.id} ({tag.count})</a></span>
+<span><a href="/tags/{tag.id}/">{tag.id} ({tag.count})</a></span>
 
 <style>
 	a {

@@ -17,7 +17,7 @@
 		<li>Piano</li>
 	</ul>
 
-	<div><a href="/posts">Posts</a></div>
+	<div><a href="/posts/">Posts</a></div>
 </Card>
 
 <style>

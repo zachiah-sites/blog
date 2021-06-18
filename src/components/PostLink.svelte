@@ -7,7 +7,7 @@
 	export let post: Post;
 </script>
 
-<Card title={post.title} link="/posts/{post.id}" level={2}>
+<Card title={post.title} link="/posts/{post.id}/" level={2}>
 	<svelte:fragment slot="banner">
 		<TagIcon --margin="0 0 0 auto" />
 		{#each post.tags as tag, index}
