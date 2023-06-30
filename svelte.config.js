@@ -1,7 +1,7 @@
 import preprocess from 'svelte-preprocess';
 import { mdsvex } from 'mdsvex';
 import { join, resolve } from 'path';
-import staticAdapter from '@sveltejs/adapter-static';
+import netlifyAdapter from '@sveltejs/adapter-netlify';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -12,7 +12,7 @@ const config = {
 
 	kit: {
 		// hydrate the <div id="svelte"> element in src/app.html
-		adapter: staticAdapter(),
+		adapter: netlifyAdapter(),
 		alias: {
 			"$components": "src/components",
 		}

@@ -5,4 +5,4 @@ functions
 /.svelte-kit
 /package
 build
-
+.netlify

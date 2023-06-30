@@ -5,7 +5,6 @@
 	import CardHeading from './CardHeading.svelte';
 	import ChevronDownIcon from './ChevronDownIcon.svelte';
 	import ChevronUpIcon from './ChevronUpIcon.svelte';
-	import Loader from './Loader.svelte';
 	import MoreIcon from './MoreIcon.svelte';
 
 	export let title: string;
