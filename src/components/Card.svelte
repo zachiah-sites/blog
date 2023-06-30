@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
-	import type { SvelteComponent } from 'svelte/internal';
+	import { createEventDispatcher, type ComponentType } from 'svelte';
 	import { slide } from 'svelte/transition';
 
 	import CardHeading from './CardHeading.svelte';
@@ -12,10 +11,10 @@
 	export let title: string;
 	export let link: string | undefined = undefined;
 	export let header = false;
-	export let level = 2;
+	export let level: 1 | 2 | 3 | 4 | 5 | 6 = 2;
 	export let collapsable = false;
 	export let collapsed = false;
-	export let icon = null;
+	export let icon: ComponentType | null = null;
 
 	const dispatch = createEventDispatcher();
 </script>

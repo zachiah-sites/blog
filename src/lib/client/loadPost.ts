@@ -1,13 +1,14 @@
 import loadPostIds from './loadPostIds';
 import loadPostIdModule from '$lib/universal/loadPostIdModule';
 import type { Post } from '../../datatypes/Post';
-import type { ApiPost } from 'src/datatypes/ApiPost';
+import type { ApiPost } from '../../datatypes/ApiPost';
 
-export default async function loadPost(fetch, id: string): Promise<Post> {
-	const response = await fetch(`/posts/${id}.json`);
+
+export default async function loadPost(_fetch: typeof fetch, id: string): Promise<Post> {
+	const response = await _fetch(`/posts/${id}`);
 	if (response.ok) {
 		const apiPost: ApiPost = await response.json();
-		const postModule = await loadPostIdModule(() => loadPostIds(fetch), id);
+		const postModule = await loadPostIdModule(() => loadPostIds(_fetch), id);
 		return {
 			...apiPost,
 			id,

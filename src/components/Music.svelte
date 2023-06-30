@@ -1,23 +1,23 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	export let tune;
+	export let tune: string;
 
-	let abcjs;
+	let abcjs: typeof import('abcjs');
 	onMount(async () => {
 		abcjs = await import('abcjs');
 	});
 
-	let paper;
-	let audio;
+	let paper: HTMLDivElement;
+	let audio: HTMLDivElement;
 
 	$: {
 		if (paper && abcjs && audio) {
-			var visualObj = abcjs.renderAbc(paper, tune, {
+			const visualObj = abcjs.renderAbc(paper, tune, {
 				responsive: 'resize'
 			})[0];
 			if (abcjs.synth.supportsAudio()) {
-				var synthControl = new abcjs.synth.SynthController();
+				const synthControl = new abcjs.synth.SynthController();
 				synthControl.load(audio, null, {
 					displayRestart: true,
 					displayPlay: true,
@@ -25,7 +25,7 @@
 				});
 				synthControl.setTune(visualObj, false);
 			} else {
-				document.querySelector('#main-midi').innerHTML =
+				document.querySelector('#main-midi')!.innerHTML =
 					"<div class='audio-error'>Audio is not supported in this browser.</div>";
 			}
 		}

@@ -1,23 +1,14 @@
-<script context="module" lang="ts">
-	export async function load({ page }) {
-		return {
-			props: {
-				path: page.path
-			}
-		};
-	}
-</script>
-
 <script lang="ts">
 	import '../globals.css';
 	import '../prism-theme.css';
 	import '../abcjs-audio.css';
+	import type { PageData } from './$types';
 
-	export let path: string;
+	export let data: PageData;
 </script>
 
 <svelte:head>
-	<link rel="canonical" href="https://blog.zachiah.com{path.replace(/\/$/, '')}/" />
+	<link rel="canonical" href="https://blog.zachiah.com{data.url.pathname.replace(/\/$/, '')}/" />
 </svelte:head>
 
 <nav>

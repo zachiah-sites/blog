@@ -1,6 +1,6 @@
 <script lang="ts">
-	export let title;
-	export let description;
+	export let title: string;
+	export let description: string | null = null;
 </script>
 
 <svelte:head>

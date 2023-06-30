@@ -1,3 +1,5 @@
-export default async function loadPostIds(fetch) {
-	return (await (await fetch('/posts.json')).json()).map((i) => i.id);
+import type { ApiPost } from '../../datatypes/ApiPost';
+
+export default async function loadPostIds(_fetch: typeof fetch) {
+	return (await (await _fetch('/posts')).json()).map((i: ApiPost) => i.id);
 }

@@ -1,5 +1,5 @@
 import loadTags from '$lib/server/loadTags';
 
-export async function get() {
+export async function GET() {
 	return { body: await loadTags() };
 }

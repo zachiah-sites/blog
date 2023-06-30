@@ -9,6 +9,6 @@ export default async function loadApiPost(id: string): Promise<ApiPost> {
 		id,
 		title: postModule.metadata.title,
 		description: postModule.metadata.description,
-		tags: await Promise.all(postModule.metadata.tags.map(async (t) => await loadTag(t)))
+		tags: await Promise.all(postModule.metadata.tags.map(async (t: string) => await loadTag(t)))
 	};
 }

@@ -1,9 +1,9 @@
-import type { SvelteComponent } from 'svelte';
+import type { ComponentType } from 'svelte';
 import type { Tag } from './Tag';
 
 export type Post = {
 	id: string;
-	content: SvelteComponent;
+	content: ComponentType;
 	title: string;
 	description: string;
 	tags: Tag[];

@@ -1,5 +1,5 @@
-<script>
-	export let level;
+<script lang="ts">
+	export let level: 1 | 2 | 3 | 4 | 5 | 6;
 </script>
 
 {#if level === 1}

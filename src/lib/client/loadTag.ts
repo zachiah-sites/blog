@@ -1,7 +1,7 @@
 import type { Tag } from '../../datatypes/Tag';
 
-export default async function loadTag(fetch, id): Promise<Tag> {
-	const response = await fetch(`/tags/${id}.json`);
+export default async function loadTag(_fetch: typeof fetch, id: string): Promise<Tag> {
+	const response = await _fetch(`/tags/${id}`);
 	if (response.ok) {
 		return await response.json();
 	} else {

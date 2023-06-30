@@ -12,15 +12,9 @@ const config = {
 
 	kit: {
 		// hydrate the <div id="svelte"> element in src/app.html
-		target: '#svelte',
 		adapter: staticAdapter(),
-		vite: {
-			resolve: {
-				alias: {
-					$lib: resolve('./src/lib'),
-					$components: resolve('./src/components')
-				}
-			}
+		alias: {
+			"$components": "src/components",
 		}
 	}
 };
