@@ -1,5 +1,6 @@
 import loadTags from '$lib/server/loadTags';
+import { json } from '@sveltejs/kit';
 
 export async function GET() {
-	return { body: await loadTags() };
+	return json(await loadTags());
 }

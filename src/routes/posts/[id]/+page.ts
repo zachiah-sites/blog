@@ -3,8 +3,8 @@ import { error } from '@sveltejs/kit';
 
 export async function load({ params, fetch }) {
 	try {
-		return {post: await loadPost(fetch, params.id) };
-	} catch {
-		throw error(404, 'Post not found');
+		return { post: await loadPost(fetch, params.id) };
+	} catch(e) {
+		throw error(404, `${e}`);
 	}
 }

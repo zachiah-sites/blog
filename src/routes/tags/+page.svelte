@@ -1,20 +1,12 @@
-<script context="module" lang="ts">
-	import loadTags from '$lib/client/loadTags';
-	/**
-	 * @type {import('@sveltejs/kit').Load}
-	 */
-
-</script>
-
 <script lang="ts">
 	import Card from '$components/Card.svelte';
 	import PostLink from '$components/PostLink.svelte';
 	import Tag from '$components/Tag.svelte';
 	import TagIcon from '$components/TagIcon.svelte';
-	import type { Tag as TagType } from '../../datatypes/Tag';
 	import Head from '$components/Head.svelte';
+	import type { PageData } from './$types';
 
-	export let tags: TagType[];
+	export let data: PageData;
 </script>
 
 <!--TODO: Add better description once I have more articles-->
@@ -22,6 +14,6 @@
 
 <Card header title="Tags" icon={TagIcon} level={1} />
 
-{#each tags as tag}
+{#each data.tags as tag}
 	<Tag {tag} />
 {/each}

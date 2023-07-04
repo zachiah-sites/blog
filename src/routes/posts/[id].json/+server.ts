@@ -1,5 +1,6 @@
 import loadApiPost from '$lib/server/loadApiPost';
+import { json } from '@sveltejs/kit';
 
 export const GET = async ({ params }) => {
-	return new Response(JSON.stringify(await loadApiPost(params.id)));
+    return json(await loadApiPost(params.id));
 };
