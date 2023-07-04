@@ -9,6 +9,5 @@
 <!--#TODO: Write better description-->
 <Head title="Posts" description="A Blog about my interests." />
 {#each data.posts as post}
-    <a href="/posts/{post.id}/">{post.title}</a>
 	<PostLink {post} />
 {/each}
