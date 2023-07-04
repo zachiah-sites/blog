@@ -12,8 +12,8 @@
 <!--TODO: Add better description once I have more articles-->
 <Head title="Tags" description="Find content by tag" />
 
-<Card header title="Tags" icon={TagIcon} level={1} />
+<Card title="Tags" icon={TagIcon} level={1} />
 
-{#each data.tags as tag}
+{#each data.tags as tag (tag.id)}
 	<Tag {tag} />
 {/each}

@@ -12,7 +12,7 @@
 </script>
 
 <Head title="{data.tag.id} | tags" description="View Posts with tag &ldquo;{data.tag.id}&rdquo;" />
-<Card header title={data.tag.id} icon={TagIcon} level={1} />
+<Card title={data.tag.id} icon={TagIcon} level={1} />
 {#each data.posts as post}
 	<PostLink {post} />
 {/each}

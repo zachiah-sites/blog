@@ -2,12 +2,19 @@
 	import type { Tag } from '../datatypes/Tag';
 
 	export let tag: Tag;
+	export let nolink: boolean = false;
 </script>
 
-<span><a href="/tags/{tag.id}/">{tag.id} ({tag.count})</a></span>
+<span>
+	{#if nolink}
+		<span class="inner">{tag.id} ({tag.count})</span>
+	{:else}
+		<a class="inner" href="/tags/{tag.id}/">{tag.id} ({tag.count})</a>
+	{/if}
+</span>
 
 <style>
-	a {
+	.inner {
 		white-space: nowrap;
 		display: block;
 		background: var(--primary-bg);

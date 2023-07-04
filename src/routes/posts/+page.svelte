@@ -8,6 +8,6 @@
 
 <!--#TODO: Write better description-->
 <Head title="Posts" description="A Blog about my interests." />
-{#each data.posts as post}
+{#each data.posts as post (post.id)}
 	<PostLink {post} />
 {/each}

@@ -11,7 +11,7 @@
 	<svelte:fragment slot="banner">
 		<TagIcon --margin="0 0 0 auto" />
 		{#each post.tags as tag, index}
-			<Tag {tag} />
+			<Tag nolink {tag} />
 		{/each}
 	</svelte:fragment>
 
