@@ -109,5 +109,9 @@ iframe {
 }
 
 pre {
-	max-height: 20em;
+}
+
+code {
+	font-family: monospace;
+	background-color: #FFFFFF22;
 }

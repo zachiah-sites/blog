@@ -1,0 +1,165 @@
+---
+title: How to get exhaustive checking with tagged unions in typescript
+tags:
+- programming
+- typescript
+- functional-programming
+description: "Tagged unions are a great tool to have in your toolbox to enable you to write safer code. Although typescript doesn't have a `match` expression (unforunately) there are still ways to get exhaustive type checking."
+---
+
+```typescript
+export type Circle = {
+    tag: 'circle';
+    radius: number;
+};
+export type Square = {
+    tag: 'square';
+    size: number;
+};
+export type Rectangle = {
+    tag: 'rectangle';
+    width: number;
+    height: number;
+};
+
+export type Shape = Circle | Square | Rectangle;
+```
+in the above example we create a `Shape` type which is a union of the types: `Circle`, `Square`, and `Rectangle`. We could now write functions that use this type:
+```typescript
+export const area = (shape: Shape) => {
+    if (shape.tag === 'circle') {
+        return Math.PI * shape.radius^2;
+    }
+
+    if (shape.tag === 'square') {
+        return shape.size^2;
+    }
+
+    return shape.width * shape.height;
+}
+```
+inside of each of the `if` blocks we get full type safety with the gaurantee
+that it is what we determined. For example if I tried to access `shape.width`
+inside of the first `if` statement with the `shape.tag === 'circle'` check, then
+I would get a typescript error. Additionally if I get relatively good exhaustive
+checking inside of the root level body of the `area` function. For instance, if I were to update `Shape`
+as follows:
+```typescript
+export type Triangle = {
+    tag: 'triangle',
+    a: number;
+    b: number;
+    c: number;
+}
+
+// ...
+
+export type Shape = Circle | Square | Rectangle | Triangle;
+```
+then I would get an error in the `area` function because I am accessing
+`shape.width` on the last line even though it may be a triangle (which doesn't have a width)
+Of course, if I were to add a type that has a `width` and `height` but is not a `Square`
+```typescript
+export type Ellipse = {
+    tag: 'ellipse';
+    width: number;
+    height: number;
+}
+
+// ...
+
+export type Shape = Circle | Square | Rectangle | Ellipse;
+```
+then I would not get a type error. There are a number of ways to be more strict
+about this that will help use have safer code. One simple way we can change the
+`area` function is to not have any final return statement and add an explicit
+return type to `area`
+```typescript
+export const area = (shape: Shape): number => {
+    if (shape.tag === 'circle') {
+        return Math.PI * shape.radius^2;
+    }
+
+    if (shape.tag === 'square') {
+        return shape.size^2;
+    }
+
+    if (shape.tag === 'rectangle') {
+        return shape.width * shape.height;
+    }
+}
+```
+the problem with this is that typescript gives us an error:
+```
+Function lacks ending return statement and return type does not include 'undefined'.
+```
+so typescript wants us to have an ending return statement but we don't want to
+because that means typescript isn't validating that we covered every case.
+Thankfully there is a (not very elegant) solution
+```typescript
+export const area = (shape: Shape): number => {
+    // ...
+
+    if (shape.tag === 'rectangle') {
+        return shape.width * shape.height;
+    }
+
+    let _exhaustiveCheck: never = shape;
+    throw new Error(`Invalid Shape`);
+}
+```
+we create an unused variable called `_exhaustiveCheck` which we typehint as
+`never`and then we assign `shape` to it. We then immediately `throw` an error.
+What on earth is the point of this madness? First the point of the variable
+typed as `never` is that we are telling typescript that `shape` must be of type
+`never`. If there we any other variants of `Shape` added in the future that we
+didn't account for then typescript would complain about this line since the
+`shape` variable would be typed as the added variant. The reason we are throwing
+the error is to let typescript know that this should never happen.  It is also
+good in case we somehow got passed a value which was invalid in spite of
+typescript as this is a runtime check. After we write our function in this way,
+it is very good at telling us if we forget to handle changes to the `Shape` type
+(or if we forget to handle all cases in the first place). If you want you can
+put the `_exhaustiveCheck` logic into its own function which could potentially
+make things more readable/concise depending on your preferences:
+```typescript
+export const exhaustiveCheck = (val: never): never => {
+    throw new Error('Exhaustive Check Failed at Runtime')
+}
+```
+inside of `area`
+```typescript
+export const area = (shape: Shape): number => {
+    // ...
+
+    if (shape.tag === 'rectangle') {
+        return shape.width * shape.height;
+    }
+
+    return exhaustiveCheck(shape);
+}
+```
+this does the same thing but instead of creating a local variable we are using
+the function parameter to do the same thing. 
+
+As an alternative way of doing
+this, you can use a switch statement:
+```typescript
+export const area = (shape: Shape): number => {
+    switch (shape.tag) {
+        case "circle":
+            return Math.PI * shape.radius^2;
+        case "square":
+            return shape.size^2;
+        case "rectangle":
+            return shape.width * shape.height;
+        default:
+            return exhaustiveCheck(shape);
+    }
+}
+```
+you could do this without the `exhaustiveCheck` helper as well of course.
+
+All of this is personal style essentially, but I would recommend at least trying
+to be consistent in your code base. The important thing is to not forget to do
+the exhaustive check one way or another.
