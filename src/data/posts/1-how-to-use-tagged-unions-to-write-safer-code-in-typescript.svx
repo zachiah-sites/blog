@@ -109,10 +109,10 @@ export const area = (shape: Shape): number => {
 }
 ```
 we create an unused variable called `_exhaustiveCheck` which we typehint as
-`never`and then we assign `shape` to it. We then immediately `throw` an error.
+`never` and then we assign `shape` to it. We then immediately `throw` an error.
 What on earth is the point of this madness? First the point of the variable
 typed as `never` is that we are telling typescript that `shape` must be of type
-`never`. If there we any other variants of `Shape` added in the future that we
+`never`. If there were any other variants of `Shape` added in the future that we
 didn't account for then typescript would complain about this line since the
 `shape` variable would be typed as the added variant. The reason we are throwing
 the error is to let typescript know that this should never happen.  It is also
